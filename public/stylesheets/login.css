@@ -8,3 +8,7 @@ form {
 	display: flex;
 	justify-content: center;
 }
+
+form input, button {
+	margin: 20px 10px;
+}
