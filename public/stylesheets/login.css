@@ -1,5 +1,10 @@
 
 
-h1, input, button {
+h1 {
 	text-align: center;
+}
+
+input, button {
+	display: flex;
+	align-items: center;
 }
