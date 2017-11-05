@@ -6,5 +6,6 @@ h1 {
 
 input, button {
 	display: flex;
+	flex-direction: column;
 	justify-content: space-around;
 }
