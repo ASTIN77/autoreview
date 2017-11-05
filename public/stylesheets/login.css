@@ -16,4 +16,6 @@ form input, button {
 
 form button {
 	background-color: blue;
+	color: white;
+	box-shadow: 2px solid gray;
 }
