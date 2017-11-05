@@ -4,8 +4,7 @@ h1 {
 	text-align: center;
 }
 
-input, button {
+form {
 	display: flex;
-	flex-direction: column;
 	justify-content: space-around;
 }
