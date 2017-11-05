@@ -7,8 +7,13 @@ h1 {
 form {
 	display: flex;
 	justify-content: center;
+	border: 2px solid black;
 }
 
 form input, button {
 	margin: 20px 10px;
+}
+
+form button {
+	background-color: blue;
 }
