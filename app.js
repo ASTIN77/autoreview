@@ -2,7 +2,7 @@ var express                 = require("express"),
     app                     = express(),
     bodyParser              = require("body-parser"),
     mongoose                = require("mongoose"),
-    Campground              = require("./models/campground"),
+    Vehicle                 = require("./models/vehicle"),
     Comment                 = require("./models/comment"),
     User                    = require("./models/user"),
     passport                = require("passport"),
@@ -14,7 +14,7 @@ var express                 = require("express"),
     mongoose.Promise        = global.Promise;
     
 var commentsRoutes          = require("./routes/comments"),
-    campgroundRoutes        = require("./routes/campgrounds"),
+    vehiclesRoutes          = require("./routes/vehicles"),
     indexRoutes             = require("./routes/index");
     
 app.set("view engine", "ejs");
@@ -43,8 +43,8 @@ app.use(function(req,res, next){
     res.locals.confirm = req.flash("confirm");
     next(); });
 app.use(indexRoutes);
-app.use("/campgrounds", campgroundRoutes);
-app.use("/campgrounds/:id/comments", commentsRoutes);
+app.use("/vehicles", vehiclesRoutes);
+app.use("/vehicles/:id/comments", commentsRoutes);
 
 
 app.listen(process.env.PORT, process.env.IP, function() {

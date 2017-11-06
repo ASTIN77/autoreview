@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var Campground = require("./models/campground");
+var Vehicle = require("./models/vehicle");
 var Comment = require("./models/comment");
 
 // define sample campground data for database initialisation
@@ -27,21 +27,21 @@ var data = [{
 function seedDB() {
 
     // Remove all campgrounds
-    Campground.remove({}, function(err) {
+    Vehicle.remove({}, function(err) {
         if (err) {
             console.log(err);
         }
         else {
-            console.log("Cleared Campgrounds Database");
+            console.log("Cleared Vehicle Database");
             // add a few campgrounds
-            console.log("Populating database with sample campgrounds");
+            console.log("Populating database with sample vehicles");
             data.forEach(function(seed) {
-                Campground.create(seed, function(err, campground) {
+                Vehicle.create(seed, function(err, vehicle) {
                     if (err) {
                         console.log(err);
                     }
                     else {
-                        console.log("Added a new campground.");
+                        console.log("Added a new vehicle.");
                         // create a comment
                         Comment.create({
                             text: "This place is great but I wish there was internet!",
@@ -51,8 +51,8 @@ function seedDB() {
                                 console.log(err);
                             }
                             else {
-                                campground.comments.push(comment);
-                                campground.save();
+                                vehicle.comments.push(comment);
+                                vehicle.save();
                                 console.log("Created new comment");
                             }
 
