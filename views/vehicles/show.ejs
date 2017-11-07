@@ -14,8 +14,8 @@
                    <div class="thumbnail">
                       <img class="image-responsive" src="<%= vehicle.image %>">
                       <div class="caption">
-                          <h4 class="pull-right">£<%= vehicle.price %>/night</h4>
-                          <h4><a><%= vehicle.name %></a></h4>
+                          <h4 class="pull-right">£<%= vehicle.price %></h4>
+                          <h4><a><%= vehicle.make %> <%= vehicle.model %></a></h4>
                           <p><%= vehicle.description %></p>
                           <p><em><strong>Submitted By <%= vehicle.author.username %></strong></em></p>
                           <% if(currentUser && vehicle.author.id.equals(currentUser._id)){ %>
@@ -28,7 +28,7 @@
                    </div>
                    <div class="well">
                        <div class="text-right">
-                           <a class="btn btn-success" href="/campgrounds/<%= vehicle._id %>/comments/new">Add New Comment</a>
+                           <a class="btn btn-success" href="/vehicles/<%= vehicle._id %>/comments/new">Add New Comment</a>
                         </div>
                         <hr>
                            <% vehicle.comments.forEach(function(comment){ %>
