@@ -7,16 +7,17 @@
     <p>
         <a class="btn btn-primary btn-lg" href="/vehicles/new">Write a New Review</a>
         </p>
-        </div>
+    </div>
 </header>
 
+<div class="container">
     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
         <% vehicles.forEach(function(vehicle){ %>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
                     <img src="<%= vehicle.image %>">
                     <div class="caption">
-                        <h4><%= vehicle.make %></h4>
+                        <h4><%= vehicle.make %> <%= vehicle.model %></h4>
                     </div>
                 <a href="/vehicles/<%= vehicle._id %>" class="btn btn-primary">More Info</a>
                 </div>
@@ -25,5 +26,6 @@
     
     </div>
 </div>
+
 
 <% include ../partials/footer %>
