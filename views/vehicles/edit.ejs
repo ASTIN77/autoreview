@@ -11,11 +11,29 @@
             <input class="form-control" type="text" name="vehicle[model]" value="<%= vehicle.model %>">
         </div>
         <div class="form-group">
-            <input class="form-control" type="text" name="vehicle[transmission]" value="<%= vehicle.transmission %>">
+        <select class="form-control" name="vehicle[transmission]">
+            <% if (vehicle.transmission === 'Manual') { %>  
+                <option value="Manual" selected>Manual</option> 
+                <option value="Automatic">Automatic</option>
+            <% } else { %>
+                <option value="Automatic" selected>Automatic</option>
+                <option value="Manual">Manual</option>
+            <% }; %>
+        </select>
         </div>
+        
         <div class="form-group">
-            <input class="form-control" type="text" name="vehicle[fuel_type]" value="<%= vehicle.fuel_type %>">
+            <select class="form-control" name="vehicle[fuel_type]">
+                <% if (vehicle.fuel_type === 'Petrol') { %>  
+                    <option value="Petrol" selected>Petrol</option> 
+                    <option value="Diesel">Diesel</option>
+                <% } else { %>
+                    <option value="Diesel" selected>Diesel</option>
+                    <option value="Petrol">Petrol</option>
+                <% }; %>
+            </select>
         </div>
+            
         <div class="form-group">
             <input class="form-control" type="number" name="vehicle[price]" value="<%= vehicle.price %>" min="0" step="1">
         </div>

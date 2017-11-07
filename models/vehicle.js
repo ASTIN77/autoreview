@@ -6,7 +6,7 @@ var vehicleSchema = new mongoose.Schema({
    make: String,
    model: String,
    transmission: String,
-   fuel_Type: String,
+   fuel_type: String,
    price: String,
    image: String,
    description: String,

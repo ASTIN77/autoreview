@@ -20,7 +20,10 @@ router.get("/", function(req, res) {
 
 router.post("/", middleware.isLoggedIn, function(req, res) {
     //get data from form and add to campgrounds array
-    var name = req.body.name;
+    var make = req.body.make;
+    var model = req.body.model;
+    var transmission = req.body.transmission;
+    var fuel_type = req.body.fuel_type;
     var price = req.body.price;
     var image = req.body.image;
     var desc = req.body.description;
@@ -29,7 +32,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
         username: req.user.username
     }
     
-    var newVehicle = { name: name, image: image, description: desc, author: author, price: price };
+    var newVehicle = { make: make, model: model, transmission: transmission, fuel_type: fuel_type, image: image, description: desc, author: author, price: price };
     // Add new campground to database
     Vehicle.create(newVehicle, function(err, newlyCreated) {
         if (err) {
