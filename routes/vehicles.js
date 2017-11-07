@@ -56,7 +56,7 @@ router.get("/:id", function(req, res) {
             console.log(err);
         }
         else {
-            res.render("vehicles/show", { campground: foundVehicle });
+            res.render("vehicles/show", { vehicle: foundVehicle });
         }
     });
 });
@@ -64,7 +64,7 @@ router.get("/:id", function(req, res) {
 
 router.get("/:id/edit", middleware.checkVehicleOwnership, function(req,res){
             Vehicle.findById(req.params.id, function(err, foundVehicle){
-                        res.render("campgrounds/edit", {campground: foundVehicle});
+                        res.render("vehicles/edit", {vehicle: foundVehicle});
     });
 });
 
