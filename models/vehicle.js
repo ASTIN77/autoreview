@@ -3,7 +3,10 @@ var mongoose = require("mongoose");
 // SCHEMA SETUP
 
 var vehicleSchema = new mongoose.Schema({
-   name: String,
+   make: String,
+   model: String,
+   transmission: String,
+   fuel_Type: String,
    price: String,
    image: String,
    description: String,
