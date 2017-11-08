@@ -13,3 +13,19 @@
 .deleteForm {
     display: inline;
 }
+
+#carStats {
+    display: flex;
+    justify-content: space-between;
+}
+
+#carStats select {
+    width: 30%;
+}
+
+.form-control::-webkit-input-placeholder {color: #555;}
+.form-control::-webkit-input-placeholder { color: #555; }  /* WebKit, Blink, Edge */
+.form-control:-moz-placeholder { color: #555;; }  /* Mozilla Firefox 4 to 18 */
+.form-control::-moz-placeholder { color: #555; }  /* Mozilla Firefox 19+ */
+.form-control:-ms-input-placeholder { color: #555; }  /* Internet Explorer 10-11 */
+.form-control::-ms-input-placeholder { color: #555; }  /* Microsoft Edge */

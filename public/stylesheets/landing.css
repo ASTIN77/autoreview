@@ -9,8 +9,9 @@ body {
   padding-top: 40vh;
 }
 
-#landing-header h1 {
+#landing-header h1  {
   color: #fff;
+  text-shadow: 2px 2px #000000;
 }
 
 .slideshow { 

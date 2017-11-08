@@ -1,6 +1,6 @@
 var express=require("express");
 var router = express.Router({mergeParams: true});
-var Campground = require("../models/vehicle");
+var Vehicle = require("../models/vehicle");
 var Comment = require("../models/comment");
 var middleware = require("../middleware");
 
