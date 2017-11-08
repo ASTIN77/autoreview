@@ -5,8 +5,10 @@ h1 {
 }
 
 form {
-	display: flex;
-	justify-content: center;
+	width: 450px;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 0 auto;
 }
 
 form input, button {
