@@ -1,3 +1,22 @@
-<h1>Results Page</h1>
+<% include ../partials/header %>
 
-<h1><%= vehicle.name %></h1>
+<div class="container">
+    <div class="row">
+         <div class="col-md-3">
+            <% vehicle.forEach(function(data){ %>
+                <div class="list-group">
+                    <li class="list-group-item active"><h4><%= data.make %> <%= data.model %></h4></li>
+                    <li class="list-group-item well">
+                        <h4>Cost         : £<%= data.price %></h4>
+                        <h4>Transmission : <%= data.transmission %></h4>
+                        <h4>Fuel Type    : <%= data.fuel_type %></h4>
+                        <h4>Year         : <%= data.model_year %></h4>
+                        <h5>Search Results: <%= data.length %></h5>
+                    </li>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>
