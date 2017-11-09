@@ -15,22 +15,6 @@ router.get("/", function(req, res) {
     });
 });
 
-// SEARCH VEHICLE ROUTE
-router.get("/search", function(req, res) {
-    var search_make = req.body.make;
-    var search_model = req.body.model;
-    var search_transmission = req.body.transmission;
-    var search_fuel_type = req.body.fuel_type;
-    var search_price = req.body.price;
-            res.render("vehicles/search");
-    });
-
-// SEARCH RESULTS VEHICLE ROUTE
-router.post("/results", function(req, res) {
-
-            res.render("vehicles/results");
-    });
-
 // CREATE VEHICLE ROUTE
 
 router.post("/", middleware.isLoggedIn, function(req, res) {
@@ -63,7 +47,19 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 // NEW VEHICLE ROUTE
 
 router.get("/new", middleware.isLoggedIn, function(req, res) {
-    res.render("vehicles/new.ejs");
+    res.render("vehicles/new");
+});
+
+// SEARCH VEHICLE ROUTE
+
+router.get("/search", function(req, res) {
+    res.render("vehicles/search");
+});
+
+// RESULTS VEHCILE ROUTE
+
+router.post ("/result", function(req,res) {
+    res.render("vehicles/result");
 });
 
 // SHOW VEHICLE ROUTE
@@ -78,6 +74,7 @@ router.get("/:id", function(req, res) {
         }
     });
 });
+
 //EDIT VEHICLE ROUTE
 
 router.get("/:id/edit", middleware.checkVehicleOwnership, function(req,res){
