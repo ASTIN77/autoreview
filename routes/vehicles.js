@@ -83,7 +83,7 @@ router.post ("/search", function(req,res) {
 
         } else {
             console.log(foundVehicle);
-            res.render("vehicles/result", {vehicle: foundVehicle});
+            res.render("vehicles/result", { vehicle: foundVehicle });
             }
             }
                 
