@@ -17,9 +17,19 @@ router.get("/", function(req, res) {
 
 // SEARCH VEHICLE ROUTE
 router.get("/search", function(req, res) {
-            res.render("vehicles/search.ejs");
+    var search_make = req.body.make;
+    var search_model = req.body.model;
+    var search_transmission = req.body.transmission;
+    var search_fuel_type = req.body.fuel_type;
+    var search_price = req.body.price;
+            res.render("vehicles/search");
     });
 
+// SEARCH RESULTS VEHICLE ROUTE
+router.post("/results", function(req, res) {
+
+            res.render("vehicles/results");
+    });
 
 // CREATE VEHICLE ROUTE
 
