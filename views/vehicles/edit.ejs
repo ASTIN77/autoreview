@@ -10,7 +10,7 @@
         <div class="form-group">
             <input class="form-control" type="text" name="vehicle[model]" value="<%= vehicle.model %>">
         </div>
-        <div class="form-group">
+        <div class="form-group carStats">
         <select class="form-control" name="vehicle[transmission]">
             <% if (vehicle.transmission === 'Manual') { %>  
                 <option value="Manual" selected>Manual</option> 
@@ -20,9 +20,6 @@
                 <option value="Manual">Manual</option>
             <% }; %>
         </select>
-        </div>
-        
-        <div class="form-group">
             <select class="form-control" name="vehicle[fuel_type]">
                 <% if (vehicle.fuel_type === 'Petrol') { %>  
                     <option value="Petrol" selected>Petrol</option> 
@@ -32,8 +29,29 @@
                     <option value="Petrol">Petrol</option>
                 <% }; %>
             </select>
-        </div>
-            
+            <select class="form-control" name="vehicle[model_year]">
+                <option class="form-control" value="" hidden>Year</option>
+                <option class="form-control" value = "2010">2000</option>
+                <option class="form-control" value = "2010">2001</option>
+                <option class="form-control" value = "2011">2002</option>
+                <option class="form-control" value = "2012">2003</option>
+                <option class="form-control" value = "2013">2004</option>
+                <option class="form-control" value = "2014">2005</option>
+                <option class="form-control" value = "2015">2006</option>
+                <option class="form-control" value = "2016">2007</option>
+                <option class="form-control" value = "2017">2008</option>
+                <option class="form-control" value = "2018">2009</option>
+                <option class="form-control" value = "2010">2010</option>
+                <option class="form-control" value = "2011">2011</option>
+                <option class="form-control" value = "2012">2012</option>
+                <option class="form-control" value = "2013">2013</option>
+                <option class="form-control" value = "2014">2014</option>
+                <option class="form-control" value = "2015">2015</option>
+                <option class="form-control" value = "2016">2016</option>
+                <option class="form-control" value = "2017">2017</option>
+                <option class="form-control" value = "2018">2018</option>
+            </select>
+            </div>
         <div class="form-group">
             <input class="form-control" type="number" name="vehicle[price]" value="<%= vehicle.price %>" min="0" step="1">
         </div>

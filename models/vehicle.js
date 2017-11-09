@@ -8,6 +8,7 @@ var vehicleSchema = new mongoose.Schema({
    transmission: String,
    fuel_type: String,
    price: String,
+   model_year: String,
    image: String,
    description: String,
    author: {

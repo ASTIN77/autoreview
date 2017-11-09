@@ -14,12 +14,12 @@
     display: inline;
 }
 
-#carStats {
+.carStats {
     display: flex;
     justify-content: space-between;
 }
 
-#carStats select {
+.carStats select {
     width: 30%;
 }
 
