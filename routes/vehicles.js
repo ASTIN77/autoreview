@@ -58,9 +58,37 @@ router.get("/search", function(req, res) {
 
 // RESULTS VEHCILE ROUTE
 
-router.post ("/result", function(req,res) {
-    res.render("vehicles/result");
-});
+router.post ("/search", function(req,res) {
+    var search_make = req.body.make,
+        search_model = req.body.model,
+        search_transmission = req.body.transmission,
+        search_fuel_type = req.body.fuel_type,
+        search_price = req.body.price;
+    
+    
+/*    Model.find({ 'some.value': 5 }, function (err, docs) {
+  // docs is an array
+});*/
+
+    Vehicle.find({ make: search_make, model: search_model, 
+                   transmission: search_transmission,
+                    fuel_type: search_fuel_type, 
+                    price: search_price}, function(err, foundVehicle) {
+        if (err) {
+            console.log(err);
+        } else {
+            if (!foundVehicle.length){
+                req.flash("error", "Search criteria returned zero results");
+                res.redirect("search");
+
+        } else {
+            console.log(foundVehicle);
+            res.render("vehicles/result", {vehicle: foundVehicle});
+            }
+            }
+                
+        });
+    });
 
 // SHOW VEHICLE ROUTE
 
