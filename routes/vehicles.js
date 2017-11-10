@@ -62,8 +62,8 @@ router.post ("/search", function(req,res) {
     
     Vehicle.find({ 'make': req.body.make, 'model': req.body.model, 
                    'transmission': req.body.transmission,
-                    'fuel_type': req.body.fuel_type, 
-                    'price': req.body.price }, function(err, searchedVehicle) {
+                    'fuel_type': req.body.fuel_type }, 
+                    function(err, searchedVehicle) {
         if (err) {
             console.log(err);
         } else {
