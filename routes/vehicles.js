@@ -59,18 +59,17 @@ router.get("/search", function(req, res) {
 // RESULTS VEHCILE ROUTE
 
 router.post ("/search", function(req,res) {
-    
-    Vehicle.find({ 'make': req.body.make, 'model': req.body.model, 
+    var query = {'make': req.body.make, 'model': req.body.model, 
                    'transmission': req.body.transmission,
-                    'fuel_type': req.body.fuel_type }, 
-                    function(err, searchedVehicle) {
+                    'fuel_type': req.body.fuel_type};
+
+    Vehicle.find(query, function(err, searchedVehicle) {
         if (err) {
             console.log(err);
         } else {
             if (!searchedVehicle.length){
                 req.flash("error", "Search criteria returned zero results");
                 res.redirect("search");
-
         } else {
             console.log(searchedVehicle);
             }

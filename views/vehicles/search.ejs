@@ -5,24 +5,24 @@
         <div style="width:40%; margin: 25px auto;">
         <form action="/vehicles/search" method="POST">
             <div class="form-group">
-                <input class="form-control" type="text" name="make" placeholder="Make" required>
+                <input class="form-control" type="text" name="make" placeholder="Make">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" name="model" placeholder="Model" required>
+                <input class="form-control" type="text" name="model" placeholder="Model">
             </div>
             <div class="form-group carStats">
-                <select class="form-control" name="transmission" required>
+                <select class="form-control" name="transmission">
                     <option class="form-control" value="" hidden>Transmission</option>
                     <option class="form-control" value = "Automatic">Automatic</option>
                     <option class="form-control" value = "Manual">Manual</option>
             </select>
-             <select class="form-control" name="fuel_type" required>
+             <select class="form-control" name="fuel_type">
                     <option class="form-control" value="" hidden>Fuel Type</option>
                     <option class="form-control" value = "Petrol">Petrol</option>
                     <option class="form-control" value = "Diesel">Diesel</option>
             </select>
 
-            <select class="form-control" name="model_year" required>
+            <select class="form-control" name="model_year">
                     <option class="form-control" value="" hidden>Year</option>
                     <option class="form-control" value = "2000">2000</option>
                     <option class="form-control" value = "2001">2001</option>
