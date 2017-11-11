@@ -1,7 +1,9 @@
 <% include ../partials/header %>
 
 <div class="container">
+    <% var i=0; %>
     <% vehicle.forEach(function(data){ %>
+    <% i++; %>
         <div class="row">
              <div class="col-md-3">
                     <div class="list-group">
@@ -11,7 +13,8 @@
                             <h4>Transmission : <%= data.transmission %></h4>
                             <h4>Fuel Type    : <%= data.fuel_type %></h4>
                             <h4>Year         : <%= data.model_year %></h4>
-                            <h5>Search Results: <%= data.length %></h5>
+                            <h4>Returned Match: <%= i %> of <%= vehicle.length %></h4>
+
                         </li>
                     </div>
             </div>
