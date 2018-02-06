@@ -1,5 +1,25 @@
 <% include ./partials/header %>
 <link rel="stylesheet" href="/stylesheets/loginout.css">
+
+<!-- Flash Messages -->
+
+<div class="container">
+    <% if(error && error.length > 0) { %>
+        <div class="ui error message"><i class="close icon"></i>
+          <div class="header"><%= error %></div>
+        </div>
+    <% } %>
+    <% if(success && success.length > 0) { %>
+        <div class="ui success message"><i class="close icon"></i>
+          <div class="header"><%= success %></div>
+        </div>
+    <% } %>
+        <% if(confirm && confirm.length > 0) { %>
+        <div class="ui warning message"><i class="close icon"></i>
+          <div class="header"><%= confirm %></div>
+        </div>
+    <% } %>
+</div>
 <h1>Login</h1>
 <form action="/login" method="POST">
     <input type="text" name="username" placeholder="username">
