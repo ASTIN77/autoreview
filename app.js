@@ -1,21 +1,18 @@
-var express                 = require("express"),
-    app                     = express(),
-    bodyParser              = require("body-parser"),
-    mongoose                = require("mongoose"),
-    Vehicle                 = require("./models/vehicle"),
-    Comment                 = require("./models/comment"),
-    User                    = require("./models/user"),
-    passport                = require("passport"),
-    LocalStrategy           = require("passport-local"),
-    passportLocalMongoose   = require("passport-local-mongoose"),
-    methodOverride          = require("method-override"),
-    seedDB                  = require("./seeds"),
-    flash                   = require("connect-flash");
-    mongoose.Promise        = global.Promise;
+const express                =  require("express"),
+     app                     =  express(),
+     bodyParser              =  require("body-parser"),
+     mongoose                =  require("mongoose"),
+     User                    =  require("./models/user"),
+     passport                =  require("passport"),
+     LocalStrategy           =  require("passport-local"),
+     methodOverride          =  require("method-override"),
+     flash                   =  require("connect-flash"),
+     commentsRoutes          =  require("./routes/comments"),
+     vehiclesRoutes          =  require("./routes/vehicles"),
+     indexRoutes             =  require("./routes/index");
+     mongoose.Promise        =  global.Promise;
     
-var commentsRoutes          = require("./routes/comments"),
-    vehiclesRoutes          = require("./routes/vehicles"),
-    indexRoutes             = require("./routes/index");
+ 
     
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));

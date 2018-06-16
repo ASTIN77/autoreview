@@ -104,7 +104,7 @@ router.get("/:id/edit", middleware.checkVehicleOwnership, function(req,res){
 //UPDATE VEHICLE ROUTE
 
 router.put("/:id", middleware.checkVehicleOwnership, function(req,res){
-   // find and update the correct campground
+   // find and update the correct vehicle
         Vehicle.findByIdAndUpdate(req.params.id, req.body.vehicle, function(err, updatedVehicle){
                 res.redirect("/vehicles/" + req.params.id);
     });
