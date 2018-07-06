@@ -25,7 +25,7 @@ router.post("/", middleware.isLoggedIn, function(req,res){
         } else {
             Comment.create(req.body.comment, function(err, comment){
                 if(err){
-                    req.flash("error", "Oops....something went wrong!")
+                    req.flash("error", "Oops....something went wrong!");
                     res.redirect("back");
                     console.log(err);
                 } else {
@@ -36,7 +36,7 @@ router.post("/", middleware.isLoggedIn, function(req,res){
                     comment.save();
                     vehicle.comments.push(comment);
                     vehicle.save();
-                    req.flash("success", "Successfully added comment.")
+                    req.flash("success", "Successfully added comment.");
                     res.redirect("/vehicles/" + vehicle._id);
                 }
             });
