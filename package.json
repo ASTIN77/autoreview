@@ -11,16 +11,20 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "coffeescript": "^2.4.1",
     "connect-flash": "^0.1.1",
-    "ejs": "^2.6.2",
+    "ejs": "^2.7.1",
     "express": "^4.17.1",
-    "express-session": "^1.16.2",
+    "express-session": "^1.17.0",
+    "graceful-fs": "^4.2.3",
     "method-override": "^2.3.10",
-    "mongoose": "^4.13.18",
+    "minimatch": "^3.0.4",
+    "mongoose": "^5.7.7",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.5.0",
     "require": "^2.4.20",
-    "uglify-js": "^3.6.0"
+    "uglify": "^0.1.5",
+    "uglify-js": "^3.6.7"
   }
 }

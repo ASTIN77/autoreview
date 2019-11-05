@@ -18,7 +18,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
-mongoose.connect('mongodb://autoreviewer1:IrnBru77#@ds042527.mlab.com:42527/autoreview', { useMongoClient: true });
+mongoose.connect('mongodb://autoreviewer1:IrnBru77#@ds042527.mlab.com:42527/autoreview',{ useNewUrlParser: true, useUnifiedTopology: true });
 //SeedDB();
 // PASSPORT CONFIG
 app.use(require("express-session")({
