@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "coffeescript": "^2.4.1",
+    "coffeescript": "^2.5.0",
     "connect-flash": "^0.1.1",
     "ejs": "^2.7.4",
     "express": "^4.17.1",
@@ -19,12 +19,12 @@
     "graceful-fs": "^4.2.3",
     "method-override": "^2.3.10",
     "minimatch": "^3.0.4",
-    "mongoose": "^5.7.13",
-    "passport": "^0.4.0",
+    "mongoose": "^5.8.7",
+    "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.5.0",
     "require": "^2.4.20",
     "uglify": "^0.1.5",
-    "uglify-js": "^3.7.1"
+    "uglify-js": "^3.7.5"
   }
 }
