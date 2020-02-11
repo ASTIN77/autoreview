@@ -19,8 +19,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 // Updated connection details
-mongoose.connect(process.env.AUTOREVIEWDATABASEURL,{ useNewUrlParser: true, useUnifiedTopology: true });
-//SeedDB();
+mongoose.connect('mongodb://localhost:27017/autoreview', { useNewUrlParser: true, useUnifiedTopology: true }); 
+// mongoose.connect(process.env.AUTOREVIEWDATABASEURL,{ useNewUrlParser: true, useUnifiedTopology: true });
+// SeedDB();
 // PASSPORT CONFIG
 app.use(require("express-session")({
     secret: "TheRealMcCoyCheddarAndOnion",
