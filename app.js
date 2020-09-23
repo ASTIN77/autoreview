@@ -19,8 +19,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 // Updated connection details
-mongoose.connect('mongodb://localhost:27017/autoreview', { useNewUrlParser: true, useUnifiedTopology: false }); 
-// mongoose.connect(process.env.AUTOREVIEWDATABASEURL,{ useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect('mongodb://localhost:27017/autoreview', { useNewUrlParser: true, useUnifiedTopology: false }); 
+mongoose.connect(process.env.AUTOREVIEWDATABASEURL,{ useNewUrlParser: true, useUnifiedTopology: false });
 // SeedDB();
 // PASSPORT CONFIG
 app.use(require("express-session")({
