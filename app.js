@@ -14,10 +14,12 @@ const express                =  require("express"),
     
  
     
+require('dotenv').config();
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
+app.set('port', process.env.PORT || 3000);
 // Updated connection details
 mongoose.connect(process.env.AUTOREVIEWDATABASEURL,{ useNewUrlParser: true, useUnifiedTopology: true });
 // SeedDB();
@@ -44,7 +46,6 @@ app.use(indexRoutes);
 app.use("/vehicles", vehiclesRoutes);
 app.use("/vehicles/:id/comments", commentsRoutes);
 
-
-app.listen(process.env.PORT, process.env.IP, function() {
-    console.log("Application Server Running");
+app.listen(app.get('port'), process.env.IP, function() {
+    console.log("Application Server Running on PORT " + app.get('port'));
 });
