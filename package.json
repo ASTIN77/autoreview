@@ -20,7 +20,7 @@
     "graceful-fs": "^4.2.4",
     "js-yaml": "^3.14.0",
     "loadash": "^1.0.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "method-override": "^2.3.10",
     "minimatch": "^3.0.4",
     "mongoose": "^5.10.9",
