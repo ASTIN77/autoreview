@@ -19,7 +19,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.set("port", process.env.PORT || 3000);
 // Updated connection details
-mongoose.connect(AUTOREVIEWDATABASEURL, {
+mongoose.connect(process.env.AUTOREVIEWDATABASEURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
