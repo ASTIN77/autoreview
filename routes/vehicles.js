@@ -9,7 +9,6 @@ router.get("/", function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      console.log(allVehicles);
       res.render("vehicles/index", { vehicles: allVehicles });
     }
   });
