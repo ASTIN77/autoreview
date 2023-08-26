@@ -1,17 +1,11 @@
 {
   "name": "autoreview",
   "version": "1.0.0",
-  "lockfileVersion": 2,
   "requires": true,
   "scripts": {
     "start" : "node app.js"
   },
-  "packages": {
-    "": {
-      "name": "autoreview",
-      "version": "1.0.0",
-      "license": "ISC",
-      "dependencies": {
+  "dependencies": {
         "body-parser": "^1.19.0",
         "coffeescript": "^2.5.1",
         "connect-flash": "^0.1.1",
@@ -32,8 +26,8 @@
         "require": "^2.4.20",
         "uglify": "^0.1.5",
         "uglify-js": "^3.11.1"
-      }
-    },
+        },
+
     "node_modules/@types/bson": {
       "version": "4.0.5",
       "resolved": "https://registry.npmjs.org/@types/bson/-/bson-4.0.5.tgz",
@@ -1904,8 +1898,7 @@
       "version": "0.0.1",
       "resolved": "https://registry.npmjs.org/zlib-browserify/-/zlib-browserify-0.0.1.tgz",
       "integrity": "sha1-T6akXQDbwV8xikr6HZr8Aljhdsw="
-    }
-  },
+  ,
   "dependencies": {
     "@types/bson": {
       "version": "4.0.5",
@@ -3320,3 +3313,5 @@
     }
   }
 }
+}
+
