@@ -1,72 +1,76 @@
-<% include ../partials/header %>
-<div class="container">
-    <div class="row">
-        <h1 style="text-align: center;">Edit <%= vehicle.make %> <%= vehicle.model %></h1>
-        <div style="width:40%; margin: 25px auto;">
-    <form action="/vehicles/<%= vehicle._id %>?_method=PUT" method="POST">
-        <div class="form-group">
-            <input class="form-control" type="text" name="vehicle[make]" value="<%= vehicle.make %>">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="text" name="vehicle[model]" value="<%= vehicle.model %>">
-        </div>
-        <div class="form-group carStats">
-        <select class="form-control" name="vehicle[transmission]">
-            <% if (vehicle.transmission === 'Manual') { %>  
-                <option value="Manual" selected>Manual</option> 
-                <option value="Automatic">Automatic</option>
-            <% } else { %>
-                <option value="Automatic" selected>Automatic</option>
-                <option value="Manual">Manual</option>
-            <% }; %>
-        </select>
-            <select class="form-control" name="vehicle[fuel_type]">
-                <% if (vehicle.fuel_type === 'Petrol') { %>  
-                    <option value="Petrol" selected>Petrol</option> 
-                    <option value="Diesel">Diesel</option>
-                <% } else { %>
-                    <option value="Diesel" selected>Diesel</option>
-                    <option value="Petrol">Petrol</option>
-                <% }; %>
-            </select>
-            <select class="form-control" name="vehicle[model_year]">
-                <option class="form-control" value="" hidden>Year</option>
-                <option class="form-control" value = "2000">2000</option>
-                <option class="form-control" value = "2001">2001</option>
-                <option class="form-control" value = "2002">2002</option>
-                <option class="form-control" value = "2003">2003</option>
-                <option class="form-control" value = "2004">2004</option>
-                <option class="form-control" value = "2005">2005</option>
-                <option class="form-control" value = "2006">2006</option>
-                <option class="form-control" value = "2007">2007</option>
-                <option class="form-control" value = "2008">2008</option>
-                <option class="form-control" value = "2009">2009</option>
-                <option class="form-control" value = "2010">2010</option>
-                <option class="form-control" value = "2011">2011</option>
-                <option class="form-control" value = "2012">2012</option>
-                <option class="form-control" value = "2013">2013</option>
-                <option class="form-control" value = "2014">2014</option>
-                <option class="form-control" value = "2015">2015</option>
-                <option class="form-control" value = "2016">2016</option>
-                <option class="form-control" value = "2017">2017</option>
-                <option class="form-control" value = "2018">2018</option>
-            </select>
+<%- include ../partials/header %>
+    <div class="container">
+        <div class="row">
+            <h1 style="text-align: center;">Edit <%= vehicle.make %>
+                    <%= vehicle.model %>
+            </h1>
+            <div style="width:40%; margin: 25px auto;">
+                <form action="/vehicles/<%= vehicle._id %>?_method=PUT" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="vehicle[make]" value="<%= vehicle.make %>">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="vehicle[model]" value="<%= vehicle.model %>">
+                    </div>
+                    <div class="form-group carStats">
+                        <select class="form-control" name="vehicle[transmission]">
+                            <% if (vehicle.transmission==='Manual' ) { %>
+                                <option value="Manual" selected>Manual</option>
+                                <option value="Automatic">Automatic</option>
+                                <% } else { %>
+                                    <option value="Automatic" selected>Automatic</option>
+                                    <option value="Manual">Manual</option>
+                                    <% }; %>
+                        </select>
+                        <select class="form-control" name="vehicle[fuel_type]">
+                            <% if (vehicle.fuel_type==='Petrol' ) { %>
+                                <option value="Petrol" selected>Petrol</option>
+                                <option value="Diesel">Diesel</option>
+                                <% } else { %>
+                                    <option value="Diesel" selected>Diesel</option>
+                                    <option value="Petrol">Petrol</option>
+                                    <% }; %>
+                        </select>
+                        <select class="form-control" name="vehicle[model_year]">
+                            <option class="form-control" value="" hidden>Year</option>
+                            <option class="form-control" value="2000">2000</option>
+                            <option class="form-control" value="2001">2001</option>
+                            <option class="form-control" value="2002">2002</option>
+                            <option class="form-control" value="2003">2003</option>
+                            <option class="form-control" value="2004">2004</option>
+                            <option class="form-control" value="2005">2005</option>
+                            <option class="form-control" value="2006">2006</option>
+                            <option class="form-control" value="2007">2007</option>
+                            <option class="form-control" value="2008">2008</option>
+                            <option class="form-control" value="2009">2009</option>
+                            <option class="form-control" value="2010">2010</option>
+                            <option class="form-control" value="2011">2011</option>
+                            <option class="form-control" value="2012">2012</option>
+                            <option class="form-control" value="2013">2013</option>
+                            <option class="form-control" value="2014">2014</option>
+                            <option class="form-control" value="2015">2015</option>
+                            <option class="form-control" value="2016">2016</option>
+                            <option class="form-control" value="2017">2017</option>
+                            <option class="form-control" value="2018">2018</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="number" name="vehicle[price]" value="<%= vehicle.price %>"
+                            min="0" step="1">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="vehicle[image]" value="<%= vehicle.image %>">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="vehicle[description]"
+                            value="<%= vehicle.description %>">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-default btn-primary btn-block">Submit</button>
+                    </div>
+                </form>
+                <a href="/vehicles">Go Back</a>
             </div>
-        <div class="form-group">
-            <input class="form-control" type="number" name="vehicle[price]" value="<%= vehicle.price %>" min="0" step="1">
         </div>
-        <div class="form-group">
-            <input class="form-control" type="text" name="vehicle[image]" value="<%= vehicle.image %>">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="text" name="vehicle[description]" value="<%= vehicle.description %>">
-        </div>
-        <div class="form-group">
-            <button class="btn btn-lg btn-default btn-primary btn-block">Submit</button>
-        </div>
-    </form>
-    <a href="/vehicles">Go Back</a>
     </div>
-    </div>
-</div>
-<% include ../partials/footer %>
+    <%- include ../partials/footer %>

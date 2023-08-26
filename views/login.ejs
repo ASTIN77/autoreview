@@ -1,29 +1,35 @@
-<% include ./partials/header %>
-<link rel="stylesheet" href="/stylesheets/loginout.css">
+<%- include ./partials/header %>
+  <link rel="stylesheet" href="/stylesheets/loginout.css">
 
-<!-- Flash Messages -->
+  <!-- Flash Messages -->
 
-<div class="container">
-    <% if(error && error.length > 0) { %>
-        <div class="ui error message"><i class="close icon"></i>
-          <div class="header"><%= error %></div>
+  <div class="container">
+    <% if(error && error.length> 0) { %>
+      <div class="ui error message"><i class="close icon"></i>
+        <div class="header">
+          <%= error %>
         </div>
-    <% } %>
-    <% if(success && success.length > 0) { %>
-        <div class="ui success message"><i class="close icon"></i>
-          <div class="header"><%= success %></div>
-        </div>
-    <% } %>
-        <% if(confirm && confirm.length > 0) { %>
-        <div class="ui warning message"><i class="close icon"></i>
-          <div class="header"><%= confirm %></div>
-        </div>
-    <% } %>
-</div>
-<h1>Login</h1>
-<form action="/login" method="POST">
+      </div>
+      <% } %>
+        <% if(success && success.length> 0) { %>
+          <div class="ui success message"><i class="close icon"></i>
+            <div class="header">
+              <%= success %>
+            </div>
+          </div>
+          <% } %>
+            <% if(confirm && confirm.length> 0) { %>
+              <div class="ui warning message"><i class="close icon"></i>
+                <div class="header">
+                  <%= confirm %>
+                </div>
+              </div>
+              <% } %>
+  </div>
+  <h1>Login</h1>
+  <form action="/login" method="POST">
     <input type="text" name="username" placeholder="username">
-<input type="password" name="password" placeholder="password">
-<button>Login</button>
-</form>
-<% include ./partials/footer %>
+    <input type="password" name="password" placeholder="password">
+    <button>Login</button>
+  </form>
+  <%- include ./partials/footer %>

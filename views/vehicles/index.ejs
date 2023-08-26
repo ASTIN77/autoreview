@@ -1,32 +1,35 @@
-<% include ../partials/header %>
-<div class="container">
-<header class="jumbotron">
-    <div class="container"></div>
-    <h1>Welcome to AutoReview!</h1>
-    <p>Your portal to detailed and reliable automobile reviews.</p>
-    <p>
-        <a class="btn btn-primary btn-lg" href="/vehicles/new">Write a New Review</a>
-        <a class="btn btn-primary btn-lg" href="/vehicles/search" >Vehicle Search</a>
-        </p>
+<%- include ../partials/header %>
+    <div class="container">
+        <header class="jumbotron">
+            <div class="container"></div>
+            <h1>Welcome to AutoReview!</h1>
+            <p>Your portal to detailed and reliable automobile reviews.</p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="/vehicles/new">Write a New Review</a>
+                <a class="btn btn-primary btn-lg" href="/vehicles/search">Vehicle Search</a>
+            </p>
     </div>
-</header>
+    </header>
 
-<div class="container">
-    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-        <% vehicles.forEach(function(vehicle){ %>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                    <img src="<%= vehicle.image %>">
-                    <div class="caption">
-                        <h4><%= vehicle.make %> <%= vehicle.model %></h4>
+    <div class="container">
+        <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+            <% vehicles.forEach(function(vehicle){ %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="thumbnail">
+                        <img src="<%= vehicle.image %>">
+                        <div class="caption">
+                            <h4>
+                                <%= vehicle.make %>
+                                    <%= vehicle.model %>
+                            </h4>
+                        </div>
+                        <a href="/vehicles/<%= vehicle._id %>" class="btn btn-primary">More Info</a>
                     </div>
-                <a href="/vehicles/<%= vehicle._id %>" class="btn btn-primary">More Info</a>
                 </div>
-            </div>
-        <% }); %>
-    
+                <% }); %>
+
+        </div>
     </div>
-</div>
 
 
-<% include ../partials/footer %>
+    <%- include ../partials/footer %>

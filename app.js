@@ -19,10 +19,20 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.set("port", process.env.PORT || 3000);
 // Updated connection details
-mongoose.connect(process.env.AUTOREVIEWDATABASEURL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  process.env.AUTOREVIEWDATABASEURL,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  (err) => {
+    if (err) {
+      copnsole.log("Communcations failure with databsae!");
+    } else {
+      console.log("Connected Sucessfully!");
+    }
+  }
+);
 // SeedDB();
 // PASSPORT CONFIG
 app.use(
@@ -50,6 +60,6 @@ app.use(indexRoutes);
 app.use("/vehicles", vehiclesRoutes);
 app.use("/vehicles/:id/comments", commentsRoutes);
 
-app.listen(app.get("port"), process.env.IP, function () {
+app.listen(app.get("port"), () => {
   console.log("Application Server Running on PORT " + app.get("port"));
 });

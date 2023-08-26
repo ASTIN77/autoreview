@@ -1,66 +1,66 @@
-<% include ../partials/header %>
-<div class="container">
-    <div class="row">
-        <h1 style="text-align: center;">Write A New Review</h1>
-        <div style="width:40%; margin: 25px auto;">
-    <form action="/vehicles" method="POST">
-        <div class="form-group">
-            <input class="form-control" type="text" name="make" placeholder="Make">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="text" name="model" placeholder="Model">
-        </div>
-        <div class="form-group carStats">
-            <select class="form-control" name="transmission" required>
-                <option class="form-control" value="" hidden>Transmission</option>
-                <option class="form-control" value = "Automatic">Automatic</option>
-                <option class="form-control" value = "Manual">Manual</option>
-        </select>
-         <select class="form-control" name="fuel_type" required>
-                <option class="form-control" value="" hidden>Fuel Type</option>
-                <option class="form-control" value = "Petrol">Petrol</option>
-                <option class="form-control" value = "Diesel">Diesel</option>
-        </select>
+<%- include ../partials/header %>
+    <div class="container">
+        <div class="row">
+            <h1 style="text-align: center;">Write A New Review</h1>
+            <div style="width:40%; margin: 25px auto;">
+                <form action="/vehicles" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="make" placeholder="Make">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="model" placeholder="Model">
+                    </div>
+                    <div class="form-group carStats">
+                        <select class="form-control" name="transmission" required>
+                            <option class="form-control" value="" hidden>Transmission</option>
+                            <option class="form-control" value="Automatic">Automatic</option>
+                            <option class="form-control" value="Manual">Manual</option>
+                        </select>
+                        <select class="form-control" name="fuel_type" required>
+                            <option class="form-control" value="" hidden>Fuel Type</option>
+                            <option class="form-control" value="Petrol">Petrol</option>
+                            <option class="form-control" value="Diesel">Diesel</option>
+                        </select>
 
-        <select class="form-control" name="model_year" required>
-                <option class="form-control" value="" hidden>Year</option>
-                <option class="form-control" value = "2000">2000</option>
-                <option class="form-control" value = "2001">2001</option>
-                <option class="form-control" value = "2002">2002</option>
-                <option class="form-control" value = "2003">2003</option>
-                <option class="form-control" value = "2004">2004</option>
-                <option class="form-control" value = "2005">2005</option>
-                <option class="form-control" value = "2006">2006</option>
-                <option class="form-control" value = "2007">2007</option>
-                <option class="form-control" value = "2008">2008</option>
-                <option class="form-control" value = "2009">2009</option>
-                <option class="form-control" value = "2010">2010</option>
-                <option class="form-control" value = "2011">2011</option>
-                <option class="form-control" value = "2012">2012</option>
-                <option class="form-control" value = "2013">2013</option>
-                <option class="form-control" value = "2014">2014</option>
-                <option class="form-control" value = "2015">2015</option>
-                <option class="form-control" value = "2016">2016</option>
-                <option class="form-control" value = "2017">2017</option>
-                <option class="form-control" value = "2018">2018</option>
-        </select>
+                        <select class="form-control" name="model_year" required>
+                            <option class="form-control" value="" hidden>Year</option>
+                            <option class="form-control" value="2000">2000</option>
+                            <option class="form-control" value="2001">2001</option>
+                            <option class="form-control" value="2002">2002</option>
+                            <option class="form-control" value="2003">2003</option>
+                            <option class="form-control" value="2004">2004</option>
+                            <option class="form-control" value="2005">2005</option>
+                            <option class="form-control" value="2006">2006</option>
+                            <option class="form-control" value="2007">2007</option>
+                            <option class="form-control" value="2008">2008</option>
+                            <option class="form-control" value="2009">2009</option>
+                            <option class="form-control" value="2010">2010</option>
+                            <option class="form-control" value="2011">2011</option>
+                            <option class="form-control" value="2012">2012</option>
+                            <option class="form-control" value="2013">2013</option>
+                            <option class="form-control" value="2014">2014</option>
+                            <option class="form-control" value="2015">2015</option>
+                            <option class="form-control" value="2016">2016</option>
+                            <option class="form-control" value="2017">2017</option>
+                            <option class="form-control" value="2018">2018</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" type="number" name="price" placeholder="Price" min="0" step="1">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="image" placeholder="Image URL">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="description" placeholder="Description">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-default btn-primary btn-block">Submit</button>
+                    </div>
+                </form>
+                <a href="/vehicles">Go Back</a>
+            </div>
         </div>
-        
-        <div class="form-group">
-            <input class="form-control" type="number" name="price" placeholder="Price" min="0" step="1">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="text" name="image" placeholder="Image URL">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="text" name="description" placeholder="Description">
-        </div>
-        <div class="form-group">
-            <button class="btn btn-lg btn-default btn-primary btn-block">Submit</button>
-        </div>
-    </form>
-    <a href="/vehicles">Go Back</a>
     </div>
-    </div>
-</div>
-<% include ../partials/footer %>
+    <%- include ../partials/footer %>
