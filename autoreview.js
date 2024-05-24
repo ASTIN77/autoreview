@@ -17,7 +17,8 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 3001);
+app.set("views", __dirname + "/views");
 // Updated connection details
 // SeedDB();
 // PASSPORT CONFIG
