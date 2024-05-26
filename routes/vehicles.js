@@ -4,19 +4,15 @@ var Vehicle = require("../models/vehicle");
 var middleware = require("../middleware");
 
 // INDEX VEHICLE ROUTE
-router.get("/", (req, res) => {
-  Vehicle.find({}, (err, allVehicles) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render("vehicles/index", { vehicles: allVehicles });
-    }
+router.get("/", async (req, res) => {
+  await Vehicle.find({}).then((allVehicles) => {
+    res.render("vehicles/index", { vehicles: allVehicles });
   });
 });
 
 // CREATE VEHICLE ROUTE
 
-router.post("/", middleware.isLoggedIn, (req, res) => {
+router.post("/", middleware.isLoggedIn, async (req, res) => {
   //get data from form and add to vehicles array
   var make = req.body.make;
   var model = req.body.model;
@@ -41,9 +37,9 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
     price: price,
   };
   // Add new vehicle to database
-  Vehicle.create(newVehicle, (err, newlyCreated) => {
+  await Vehicle.create(newVehicle).then((err, newlyCreated) => {
     if (err) {
-      console.log(err);
+      console.log("Error");
     } else {
       res.redirect("/vehicles");
     }
@@ -64,7 +60,7 @@ router.get("/search", (req, res) => {
 
 // RESULTS VEHCILE ROUTE
 
-router.post("/search", (req, res) => {
+router.post("/search", async (req, res) => {
   var query = {
     make: req.body.make,
     model: req.body.model,
@@ -72,47 +68,45 @@ router.post("/search", (req, res) => {
     fuel_type: req.body.fuel_type,
   };
 
-  Vehicle.find(query, (err, searchedVehicle) => {
-    if (err) {
-      console.log(err);
-    } else {
-      if (!searchedVehicle.length) {
-        req.flash("error", "Search criteria returned zero results");
-        res.redirect("search");
+  await Vehicle.find(query, (err, searchedVehicle)).then(
+    (err, searchedVehicle) => {
+      if (err) {
+        console.log(err);
       } else {
-        res.render("vehicles/result", { vehicle: searchedVehicle });
+        if (!searchedVehicle.length) {
+          req.flash("error", "Search criteria returned zero results");
+          res.redirect("search");
+        } else {
+          res.render("vehicles/result", { vehicle: searchedVehicle });
+        }
       }
     }
-  });
+  );
 });
 
 // SHOW VEHICLE ROUTE
 
-router.get("/:id", function (req, res) {
-  Vehicle.findById(req.params.id)
+router.get("/:id", async (req, res) => {
+  await Vehicle.findById(req.params.id)
     .populate("comments")
-    .exec((err, foundVehicle) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.render("vehicles/show", { vehicle: foundVehicle });
-      }
+    .then((foundVehicle) => {
+      res.render("vehicles/show", { vehicle: foundVehicle });
     });
 });
 
 //EDIT VEHICLE ROUTE
 
-router.get("/:id/edit", middleware.checkVehicleOwnership, (req, res) => {
-  Vehicle.findById(req.params.id, (err, foundVehicle) => {
-    res.render("vehicles/edit", { vehicle: foundVehicle });
+router.get("/:id/edit", middleware.checkVehicleOwnership, async (req, res) => {
+  await Vehicle.findById(req.params.id).then((err, editVehicle) => {
+    res.render("vehicles/edit", { vehicle: editVehicle });
   });
 });
 
 //UPDATE VEHICLE ROUTE
 
-router.put("/:id", middleware.checkVehicleOwnership, (req, res) => {
+router.put("/:id", middleware.checkVehicleOwnership, async (req, res) => {
   // find and update the correct vehicle
-  Vehicle.findByIdAndUpdate(
+  await Vehicle.findByIdAndUpdate(
     req.params.id,
     req.body.vehicle,
     (err, updatedVehicle) => {
@@ -123,8 +117,8 @@ router.put("/:id", middleware.checkVehicleOwnership, (req, res) => {
 
 // DESTROY VEHICLE ROUTE
 
-router.delete("/:id", middleware.checkVehicleOwnership, (req, res) => {
-  Vehicle.findByIdAndRemove(req.params.id, (err) => {
+router.delete("/:id", middleware.checkVehicleOwnership, async (req, res) => {
+  await Vehicle.findByIdAndRemove(req.params.id, (err) => {
     res.redirect("/vehicles");
   });
 });

@@ -49,12 +49,7 @@ app.use("/vehicles/:id/comments", commentsRoutes);
 
 const connectDB = async () => {
   try {
-    const conn = mongoose.connect(process.env.AUTOREVIEWDATABASEURL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-    });
+    const conn = mongoose.connect(process.env.AUTOREVIEWDATABASEURL);
   } catch (error) {
     console.log(error);
     process.exit(1);

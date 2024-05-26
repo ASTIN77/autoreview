@@ -19,7 +19,7 @@
     "lodash": "^4.17.21",
     "method-override": "^2.3.10",
     "minimatch": "^3.0.4",
-    "mongoose": "^5.10.9",
+    "mongoose": "^8.4.0",
     "nx": "^19.1.0",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
