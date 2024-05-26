@@ -68,20 +68,18 @@ router.post("/search", async (req, res) => {
     fuel_type: req.body.fuel_type,
   };
 
-  await Vehicle.find(query, (err, searchedVehicle)).then(
-    (err, searchedVehicle) => {
-      if (err) {
-        console.log(err);
+  await Vehicle.find(query, err).then((err, searchedVehicle) => {
+    if (err) {
+      console.log(err);
+    } else {
+      if (!searchedVehicle.length) {
+        req.flash("error", "Search criteria returned zero results");
+        res.redirect("search");
       } else {
-        if (!searchedVehicle.length) {
-          req.flash("error", "Search criteria returned zero results");
-          res.redirect("search");
-        } else {
-          res.render("vehicles/result", { vehicle: searchedVehicle });
-        }
+        res.render("vehicles/result", { vehicle: searchedVehicle });
       }
     }
-  );
+  });
 });
 
 // SHOW VEHICLE ROUTE
