@@ -9,10 +9,11 @@ const express = require("express"),
   flash = require("connect-flash"),
   commentsRoutes = require("./routes/comments"),
   vehiclesRoutes = require("./routes/vehicles"),
-  indexRoutes = require("./routes/index");
-mongoose.Promise = global.Promise;
+  indexRoutes = require("./routes/index"),
+  dotenv = require("dotenv");
 
-require("dotenv").config();
+dotenv.config();
+mongoose.Promise = global.Promise;
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
