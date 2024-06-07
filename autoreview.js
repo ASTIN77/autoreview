@@ -58,7 +58,7 @@ const connectDB = async () => {
 };
 
 connectDB().then(() => {
-  app.listen(app.get("port"), function () {
+  app.listen("3001", function () {
     console.log("Successfully listening on " + app.get("port"));
   });
 });
