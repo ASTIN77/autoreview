@@ -22,13 +22,14 @@ router.post("/register", async (req, res) => {
       req.flash("error", err.message);
       return res.redirect("/register");
     }*/
-    passport.authenticate("local")(req, res, function () {
-      req.flash(
-        "success",
-        "Welcome " + user.username + ". You have successfully registered!"
-      );
-      res.redirect("/vehicles");
-    });
+    passport.authenticate("local"),
+      (req, res) => {
+        req.flash(
+          "success",
+          "Welcome " + user.username + ". You have successfully registered!"
+        );
+        res.redirect("/vehicles");
+      };
   });
 });
 
@@ -46,7 +47,7 @@ router.post(
     successRedirect: "/vehicles",
     failureRedirect: "/login",
   }),
-  function (req, res) {}
+  (req, res) => {}
 );
 
 // LOGOUT ROUTE
