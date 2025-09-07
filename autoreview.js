@@ -1,5 +1,21 @@
 // --- AutoReview (Node 22 + Mongoose 8 friendly) ---
 
+// ---- kill util.isArray deprecation (DEP0044) globally ----
+const util = require("util");
+try {
+  // replace the deprecated function before any other module loads
+  Object.defineProperty(util, "isArray", {
+    value: Array.isArray,
+    writable: true,
+    configurable: true,
+    enumerable: false
+  });
+} catch (_) {
+  // ignore if something froze util (rare)
+}
+// ----------------------------------------------------------
+
+
 // 1) Load env first
 require('dotenv').config();
 
