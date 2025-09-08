@@ -1,19 +1,20 @@
 var express = require("express");
 var router = express.Router();
 var Vehicle = require("../models/vehicle");
+var Comment = require("../models/comment"); // needed for cascade delete
 var middleware = require("../middleware");
 
 // INDEX VEHICLE ROUTE
-router.get("/", async (req, res) => {
-  await Vehicle.find({}).then((allVehicles) => {
-    res.render("vehicles/index", { vehicles: allVehicles });
-  });
+router.get("/", function (req, res, next) {
+  Vehicle.find({})
+    .then(function (allVehicles) {
+      res.render("vehicles/index", { vehicles: allVehicles });
+    })
+    .catch(next);
 });
 
 // CREATE VEHICLE ROUTE
-
-router.post("/", middleware.isLoggedIn, async (req, res) => {
-  //get data from form and add to vehicles array
+router.post("/", middleware.isLoggedIn, function (req, res) {
   var make = req.body.make;
   var model = req.body.model;
   var transmission = req.body.transmission;
@@ -21,6 +22,7 @@ router.post("/", middleware.isLoggedIn, async (req, res) => {
   var price = req.body.price;
   var image = req.body.image;
   var desc = req.body.description;
+
   var author = {
     id: req.user._id,
     username: req.user.username,
@@ -36,31 +38,31 @@ router.post("/", middleware.isLoggedIn, async (req, res) => {
     author: author,
     price: price,
   };
-  // Add new vehicle to database
-  await Vehicle.create(newVehicle).then((err, newlyCreated) => {
-    if (err) {
-      console.log("Error");
-    } else {
+
+  Vehicle.create(newVehicle)
+    .then(function () {
       res.redirect("/vehicles");
-    }
-  });
+    })
+    .catch(function (err) {
+      console.error(err);
+      req.flash("error", "Oops....something went wrong!");
+      res.redirect("back");
+    });
 });
 
 // NEW VEHICLE ROUTE
-
-router.get("/new", middleware.isLoggedIn, (req, res) => {
+router.get("/new", middleware.isLoggedIn, function (req, res) {
   res.render("vehicles/new");
 });
 
-// SEARCH VEHICLE ROUTE
-
-router.get("/search", (req, res) => {
+// SEARCH VEHICLE ROUTE (form)
+router.get("/search", function (req, res) {
   res.render("vehicles/search");
 });
 
-// RESULTS VEHCILE ROUTE
-
-router.post("/search", async (req, res) => {
+// RESULTS VEHICLE ROUTE (search submit)
+router.post("/search", function (req, res) {
+  // Build query from provided fields; drop empties to avoid over-filtering
   var query = {
     make: req.body.make,
     model: req.body.model,
@@ -68,57 +70,102 @@ router.post("/search", async (req, res) => {
     fuel_type: req.body.fuel_type,
   };
 
-  await Vehicle.find(query, err).then((err, searchedVehicle) => {
-    if (err) {
-      console.log(err);
-    } else {
-      if (!searchedVehicle.length) {
-        req.flash("error", "Search criteria returned zero results");
-        res.redirect("search");
-      } else {
-        res.render("vehicles/result", { vehicle: searchedVehicle });
-      }
+  Object.keys(query).forEach(function (k) {
+    if (query[k] === undefined || query[k] === null || query[k] === "") {
+      delete query[k];
     }
   });
-});
 
-// SHOW VEHICLE ROUTE
-
-router.get("/:id", async (req, res) => {
-  await Vehicle.findById(req.params.id)
-    .populate("comments")
-    .then((foundVehicle) => {
-      res.render("vehicles/show", { vehicle: foundVehicle });
+  Vehicle.find(query)
+    .then(function (searchedVehicle) {
+      if (!searchedVehicle || searchedVehicle.length === 0) {
+        req.flash("error", "Search criteria returned zero results");
+        return res.redirect("search");
+      }
+      res.render("vehicles/result", { vehicle: searchedVehicle });
+    })
+    .catch(function (err) {
+      console.error(err);
+      req.flash("error", "Oops....something went wrong!");
+      res.redirect("back");
     });
 });
 
-//EDIT VEHICLE ROUTE
-
-router.get("/:id/edit", middleware.checkVehicleOwnership, async (req, res) => {
-  await Vehicle.findById(req.params.id).then((err, editVehicle) => {
-    res.render("vehicles/edit", { vehicle: editVehicle });
-  });
+// SHOW VEHICLE ROUTE
+router.get("/:id", function (req, res, next) {
+  Vehicle.findById(req.params.id)
+    .populate("comments")
+    .then(function (foundVehicle) {
+      if (!foundVehicle) {
+        req.flash("error", "Vehicle not found!?!");
+        return res.redirect("/vehicles");
+      }
+      res.render("vehicles/show", { vehicle: foundVehicle });
+    })
+    .catch(next);
 });
 
-//UPDATE VEHICLE ROUTE
+// EDIT VEHICLE ROUTE
+router.get("/:id/edit", middleware.checkVehicleOwnership, function (req, res) {
+  Vehicle.findById(req.params.id)
+    .then(function (editVehicle) {
+      if (!editVehicle) {
+        req.flash("error", "Vehicle not found!?!");
+        return res.redirect("back");
+      }
+      res.render("vehicles/edit", { vehicle: editVehicle });
+    })
+    .catch(function (err) {
+      console.error(err);
+      req.flash("error", "Oops....something went wrong!");
+      res.redirect("back");
+    });
+});
 
-router.put("/:id", middleware.checkVehicleOwnership, async (req, res) => {
-  // find and update the correct vehicle
-  await Vehicle.findByIdAndUpdate(
-    req.params.id,
-    req.body.vehicle,
-    (err, updatedVehicle) => {
+// UPDATE VEHICLE ROUTE
+router.put("/:id", middleware.checkVehicleOwnership, function (req, res) {
+  Vehicle.findByIdAndUpdate(req.params.id, req.body.vehicle, {
+    new: true,
+    runValidators: true,
+  })
+    .then(function () {
       res.redirect("/vehicles/" + req.params.id);
-    }
-  );
+    })
+    .catch(function (err) {
+      console.error(err);
+      req.flash("error", "Oops....something went wrong!");
+      res.redirect("back");
+    });
 });
 
-// DESTROY VEHICLE ROUTE
+// DESTROY VEHICLE ROUTE (with comment cleanup)
+router.delete("/:id", middleware.checkVehicleOwnership, function (req, res) {
+  var id = req.params.id;
 
-router.delete("/:id", middleware.checkVehicleOwnership, async (req, res) => {
-  await Vehicle.findByIdAndRemove(req.params.id, (err) => {
-    res.redirect("/vehicles");
-  });
+  Vehicle.findByIdAndDelete(id)
+    .then(function (deletedVehicle) {
+      if (!deletedVehicle) {
+        req.flash("error", "Vehicle not found!?!");
+        return res.redirect("/vehicles");
+      }
+
+      var ids = (deletedVehicle.comments || []).map(function (c) {
+        return String(c);
+      });
+
+      if (ids.length === 0) {
+        return; // nothing to clean
+      }
+      return Comment.deleteMany({ _id: { $in: ids } });
+    })
+    .then(function () {
+      res.redirect("/vehicles");
+    })
+    .catch(function (err) {
+      console.error(err);
+      req.flash("error", "Oops....something went wrong!");
+      res.redirect("back");
+    });
 });
 
 module.exports = router;

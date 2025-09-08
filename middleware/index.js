@@ -1,9 +1,11 @@
-var middlewareObj = {};
 var Vehicle = require("../models/vehicle");
 var Comment = require("../models/comment");
 
+var middlewareObj = {};
+
+// Check vehicle ownership
 middlewareObj.checkVehicleOwnership = function (req, res, next) {
-  if (!(req.isAuthenticated && req.isAuthenticated())) {
+  if (!req.isAuthenticated || !req.isAuthenticated()) {
     req.flash("error", "You need to be logged in to do that!");
     return res.redirect("back");
   }
@@ -15,7 +17,6 @@ middlewareObj.checkVehicleOwnership = function (req, res, next) {
         return res.redirect("back");
       }
 
-      // mirror original equality check, with a safe fallback
       var owns =
         foundVehicle.author &&
         foundVehicle.author.id &&
@@ -23,7 +24,9 @@ middlewareObj.checkVehicleOwnership = function (req, res, next) {
           ? foundVehicle.author.id.equals(req.user._id)
           : String(foundVehicle.author.id) === String(req.user._id));
 
-      if (owns) return next();
+      if (owns) {
+        return next();
+      }
 
       req.flash("error", "You do not have permission to do that.");
       res.redirect("back");
@@ -35,8 +38,9 @@ middlewareObj.checkVehicleOwnership = function (req, res, next) {
     });
 };
 
+// Check comment ownership
 middlewareObj.checkCommentOwnership = function (req, res, next) {
-  if (!(req.isAuthenticated && req.isAuthenticated())) {
+  if (!req.isAuthenticated || !req.isAuthenticated()) {
     req.flash("error", "You need to be logged in to do that!");
     return res.redirect("back");
   }
@@ -55,7 +59,9 @@ middlewareObj.checkCommentOwnership = function (req, res, next) {
           ? foundComment.author.id.equals(req.user._id)
           : String(foundComment.author.id) === String(req.user._id));
 
-      if (owns) return next();
+      if (owns) {
+        return next();
+      }
 
       req.flash("error", "You do not have permission to do that.");
       res.redirect("back");
@@ -67,6 +73,7 @@ middlewareObj.checkCommentOwnership = function (req, res, next) {
     });
 };
 
+// Check if logged in
 middlewareObj.isLoggedIn = function (req, res, next) {
   if (req.isAuthenticated && req.isAuthenticated()) {
     return next();
